@@ -15,7 +15,7 @@ const Coin = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get("https://api.coingecko.com/api/v3/coins");
+        const { data } = await axios.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en");
         console.log(data);
         setCoinArray(data);
         setLoading(false);
@@ -57,10 +57,10 @@ const Coin = () => {
                     }}>
 
                     <Text fontSize={"15px"} noOfLines={"1"}>{i.name}</Text>
-                    <Image src={i.image.large} alt='Coin image' h={["5vh", "10vh"]} objectFit={"contain"} />
+                    <Image src={i.image} alt='Coin image' h={["5vh", "10vh"]} objectFit={"contain"} />
                     <Heading fontSize={"22px"} textTransform="uppercase">{i.symbol}</Heading>
                     <Text>
-                      {"₹ "}{i.market_data.current_price.inr}
+                      {"₹ "}{i.current_price}
                     </Text>
                   </VStack>
                 </Link>
